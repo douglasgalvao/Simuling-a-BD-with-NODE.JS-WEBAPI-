@@ -1,0 +1,19 @@
+{
+  "name": "web_api_teste",
+  "version": "1.0.0",
+  "description": "Api Routes to improve some skills",
+  "main": "routes.js",
+  "scripts": {
+    "dev": "nodemon ./engine/routes.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "apiRoutes"
+  },
+  "author": "Douglas Machado",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
