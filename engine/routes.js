@@ -25,6 +25,8 @@ var alunos = [{
     "idade": 23
 }];
 
+
+/** Essa rota recebe um { id } de entrada e retorna o objeto correspondente ao id especificado. */
 webApi.get("/searchAluno", (req, resp) => {
     let requisition = req.body;
     if (requisition["id"] && typeof (requisition.id) == 'string') {
@@ -38,7 +40,9 @@ webApi.get("/searchAluno", (req, resp) => {
     }
 });
 
-webApi.get("/getAlunos", (req, resp) => {
+/** Essa rota não recebe parametros de entrada , e retorna todos objetos da lista aluno caso exista. */
+
+webApi.get("/getAlunos", (req, resp) => {  // observe que a requisição não é usada nesses casos
 
     if (alunos.length > 0) {
         return resp.status(200).json({
@@ -49,18 +53,18 @@ webApi.get("/getAlunos", (req, resp) => {
             })
         });
     } else {
-        return resp.status(200).json({
+        return resp.status(200).json({ // retorno de uma requisição sucedida (200) porém sem resultado de retorno da lista alunos.
             response: "Nenhum aluno cadastrado."
         });
     }
 
 });
 
-
+/**Essa rota recebe um input {id,nome,idade} e Cadastra na lista alunos*/
 webApi.post("/putAluno", (req, resp) => {
     let requisition = req.body;
     if (requisition["id"] && requisition["nome"] && requisition["idade"] &&
-        requisition.id != "" && requisition.nome != "" && typeof (requisition.idade) == "number" &&
+        requisition.id != "" && requisition.nome != "" && typeof (requisition.idade) == "number" &&  /** validação de campos(parâmetros de entrada) para a criação de um objeto aluno na lista alunos.*/
         requisition.idade > 0) {
         if (!alunos.find(e => e.id == requisition.id)) {
             alunos.push(req.body);
@@ -80,7 +84,7 @@ webApi.post("/putAluno", (req, resp) => {
         });
     }
 });
-
+/**Essa rota recebe um input {id} e deleta o objeto na lista de alunos caso o id inputado tenha equivalencia dentro de algum objeto na lista de alunos. */
 webApi.delete("/deleteAluno", (req, resp) => {
     let requisition = req.body;
 
